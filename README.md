@@ -109,21 +109,21 @@ Learning Python - by Mark Lutz
   obj = MyClass()
   obj.test() # Output will be Mixin2
   ```
-  
-  ## Iterations and Comprehensions
-  - **Iterator**, has a method named `__next__`, it advances iterator to next item
+## Iterations and Comprehensions
+**Note**: In python 3.0, it is named `.__next__()`, in python 2.6, it is named `.next()`. There is a bult-in function `next()` which is available in both 3.0 and 2.6. It calls `.__next__()` in python 3.0 and `.next()` in python 2.6.
+
+- **Iterator**, has a method named `__next__`, it advances iterator to next item
     ```python
     f = open('script1.py')
     f.__next__() # output is 'import sys\n'
     ```
-  - Iterable, such as List, Dictonary need to call `iter()` to obtain iterator
-   ```python
-   myList = [1, 2, 3]
-   a = iter(myList)
-   ```
-  - File Iterators, `open()` method opens file and make itertor itself, `.readline()` will read next line from a file each    time it is called. Will return empty string `''` when it's end of the line. `.readline()` actually calls `.__next__()`,   only difference is that `.readline()` won't raise exception, it returns empty string instead.
+- Iterable, such as List, Dictonary need to call `iter()` to obtain iterator
+  ```python
+  myList = [1, 2, 3]
+  a = iter(myList)
+  ```
+- File Iterators, `open()` method opens file and make itertor itself, `.readline()` will read next line from a file each    time it is called. Will return empty string `''` when it's end of the line. `.readline()` actually calls `.__next__()`,   only difference is that `.readline()` won't raise exception, it returns empty string instead.
   
-    **Note**: In python 3.0, it is named `.__next__()`, in python 2.6, it is named `.next()`. There is a bult-in function `next()` which is available in both 3.0 and 2.6. It calls `.__next__()` in python 3.0 and `.next()` in python 2.6.
     ```python
     f = open('script.py') # read a 4-line script file in this directory
     
@@ -141,4 +141,31 @@ Learning Python - by Mark Lutz
     f.__next__() # output 'print(2 ** 33)\n'
     f.__next__() # Error! output 'Traceback (most recent call last): StopIteration'
     ```
-    
+- List Comprehensions(It's faster)
+  ```python
+  # regular way create list
+  L = [1, 2, 3, 4, 5]
+  for i in range(len(L)):
+    L[i] += 10
+  print(L) # output is '[11, 12, 13, 14, 15]'
+  
+  # List comprehensions
+  L = [1, 2, 3, 4, 5]
+  L = [x + 10 for x in L]
+  print(L) # output is '[11, 12, 13, 14, 15]'
+  ```
+  
+  
+## Read File
+- read file using `.readlines()`, it will loads the file into a list of line strings all at once
+  ```python
+  f = open('script1.py')
+  lines = f.readlines()
+  print(lines) # output is ['import sys\n', 'print(sys.path)\n', 'x = 2\n', 'print(2 ** 33)\n']
+  ```
+- read file using `.readline()`, it will loads the file into one single string with new lines.
+  ```python
+  f = open('script1.py')
+  lines = f.readline()
+  print(lines) # output is 'import sys\nprint(sys.path)\nx = 2\nprint(2 ** 33)\n'
+  ```
