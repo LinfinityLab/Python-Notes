@@ -148,6 +148,8 @@ Learning Python - by Mark Lutz
 ## Iterations and Comprehensions
 **Note**: In python 3.0, it is named `.__next__()`, in python 2.6, it is named `.next()`. There is a bult-in function `next()` which is available in both 3.0 and 2.6. It calls `.__next__()` in python 3.0 and `.next()` in python 2.6.
 
+![alt text](https://github.com/dongliang3571/Python-Notes/blob/master/screenshot/iteration.png?raw=true "itertor")
+
 - **Iterator**, has a method named `__next__`, it advances iterator to next item
     ```python
     f = open('script1.py')
