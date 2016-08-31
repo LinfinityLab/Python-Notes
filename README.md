@@ -33,8 +33,7 @@ Learning Python - by Mark Lutz
   mytuple = (1, 2, 3)
   mytuple[0] = 5 # Error raised, because tuple is immutable
   ```
-## File
-- 
+
 ## Argument  
 - Function's arguments are passed by assignment, so that they are passed by reference or pointer
   ```python
