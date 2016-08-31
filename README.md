@@ -78,6 +78,43 @@ Learning Python - by Mark Lutz
   f(b=2, 1, c=3) # error
   ```
 
+- Arbitrary argument examples
+  In function , `*` builds a collection of arguments. In caller, `*` it unpacks a collection of arguments.
+  ```python
+  def f(*args):
+    print(args)
+    
+  f() # output is '()'
+  f(1) # output is '(1,)'
+  f(1, 2, 3, 4) # output is '(1, 2, 3, 4)'
+  
+  args = (1, 2)
+  f(*args) # output is '1, 2, 3, 4'
+  ```
+  `**` is similar to `*`, except it works for dictionary
+  
+- Python 3.0 Keyword-Only Arguments
+
+  they make it easier to allow a function to accept both any number of positional arguments to be processed, and con- figuration options passed as keywords.
+  ```pythonh
+  def f(a, *b, c):
+    print(a, b, c)
+  
+  f(1, 2, c=3) # output is '1 (2,) 3'
+  f(a=1, c=3) # output is '1 () 3'
+  f(1, 2, 3) # Error! TypeError: kwonly() needs keyword-only argument c
+  ```
+  `c` must be passsed by keyword only
+  
+  **Note:** keyword-only argument must be specified after `*args` and before `**kwargs`
+  
+  ```python
+  def f(a, *b, **d, c=6):
+    print(a, b, c, d)  # error! SyntaxError: invalid syntax, keyword-only before **
+    
+  def f(a, *b, c=6, **d):
+    print(a, b, c, d) # works!
+  ````
 ## Mixin
 - In Python the class hierarchy is defined right to left.
   ```python
@@ -158,12 +195,14 @@ Learning Python - by Mark Lutz
   
 ## Read File
 - read file using `.readlines()`, it will loads the file into a list of line strings all at once
+
   ```python
   f = open('script1.py')
   lines = f.readlines()
   print(lines) # output is ['import sys\n', 'print(sys.path)\n', 'x = 2\n', 'print(2 ** 33)\n']
   ```
 - read file using `.readline()`, it will loads the file into one single string with new lines.
+
   ```python
   f = open('script1.py')
   lines = f.readline()
