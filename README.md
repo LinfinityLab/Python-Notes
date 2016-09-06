@@ -4,6 +4,8 @@ Some notes from book I read
 
 Learning Python - by Mark Lutz
 ==============================
+
+## Dynamic typing
 - Python is dynamic typing, it defines the types during runtime.
   ```python
   number = 3 # it makes varibale number be integer 3
@@ -34,6 +36,61 @@ Learning Python - by Mark Lutz
   mytuple[0] = 5 # Error raised, because tuple is immutable
   ```
 
+## Functions
+- Functions are objects too, function names are just variables reference to objects
+  ```python
+  def echo(message):
+    print(message)
+  
+  echo('Direct call') # Call object through original name
+  # Output: Direct call
+  
+  x = echo # Now x references the function too
+  x('Indirect call!') # Call object through name by adding ()
+  
+  def indirect(func, arg):
+    func(arg) # Call the passed-in object by adding ()
+  
+  indirect(echo, 'Argument call!') # Pass the function to another function
+  schedule = [(echo, 'Spam!'), (echo, 'Ham!')]
+  for (func, arg) in schedule:
+    func(arg) # Call functions embeded in containers
+  # Output: Spam!
+  #         Ham!
+  
+  def make(label):
+    def echo(message):
+      print(label + ':' + message)
+    return echo
+  
+  F = make('Spam')
+  F('Ham!')
+  # Output: Spam:Ham!
+  
+  F('Eggs!')
+  # Output: Spam: Eggs
+  ```
+## Recursive function
+- functions that all themselves either directly or indirectly in order to loop
+  ```python
+  def mysum(L):
+    print(L)
+    if not L:
+      return 0
+    else:
+      return L[0] + mysum(L[1:])
+      
+  mysym([1, 2, 3, 4, 5])
+  # Output of the function
+  # [1, 2, 3, 4, 5]
+  # [2, 3, 4, 5]
+  # [3, 4, 5]
+  # [4, 5]
+  # [5]
+  # []
+  # 15
+  ```
+  
 ## Argument  
 - Function's arguments are passed by assignment, so that they are passed by reference or pointer
   ```python
