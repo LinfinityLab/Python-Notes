@@ -266,3 +266,28 @@ Learning Python - by Mark Lutz
   lines = f.readline()
   print(lines) # output is 'import sys\nprint(sys.path)\nx = 2\nprint(2 ** 33)\n'
   ```
+
+## Functional programming (In python 2.x, it returns list, in python 3.x it returns iterables)
+- `map` a built-in function to items in an iterable.
+  ```python
+  def inc(x): return x + 10
+  
+  list(map(inc, counters)) # output: [11, 12 ,13, 14]
+  
+  list(map((lambda x: x + 3), counters)) # output: [4, 5, 6, 7]
+  
+  # With multiple sequences, `map` expects an N-argument function for N sequences
+  pow(3, 4) # output: 81
+  list(map(pow, [1, 2, 3], [2, 3, 4])) # output: [1, 8, 81]
+  ```
+  
+- `filter` Its relatives filter out items based on a test function(`filter`)
+  ```python
+  list(range(-5, 5)) # output: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4]
+  list(filter((lambda x: x > 0), range(-5, 5))) # output: [1, 2, 3, 4]
+  ```
+- `reduce` apply functions to pairs of items and running results (`reduce`)
+   ```python
+   reduce((lambda x, y: x + y), [1, 2, 3, 4]) # output: 10
+   reduce((lambda x, y: x * y), [1, 2, 3, 4]) # output: 24
+   ```
