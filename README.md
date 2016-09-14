@@ -287,7 +287,15 @@ Learning Python - by Mark Lutz
   list(filter((lambda x: x > 0), range(-5, 5))) # output: [1, 2, 3, 4]
   ```
 - `reduce` apply functions to pairs of items and running results (`reduce`)
-   ```python
-   reduce((lambda x, y: x + y), [1, 2, 3, 4]) # output: 10
-   reduce((lambda x, y: x * y), [1, 2, 3, 4]) # output: 24
+  ```python
+  reduce((lambda x, y: x + y), [1, 2, 3, 4]) # output: 10
+  reduce((lambda x, y: x * y), [1, 2, 3, 4]) # output: 24
+  
+  # Equivalent for loop implementation
+  L = [1, 2, 3, 4]
+  res = L[0]
+  for x i L[1:]:
+    res = res + x
+  
+  res # output: 10
    ```
